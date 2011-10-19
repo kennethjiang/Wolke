@@ -1,0 +1,893 @@
+/*
+ * SelRolesViewer
+ */
+
+div.viewers-selrolesviewer-blocks {
+	float: left;
+	position: absolute;
+	height: 130px;
+}
+
+/* Add button */
+div.viewers-selrolesviewer-add {
+	left: 0px;
+	width: 40px;
+	cursor: pointer;
+	border-width: 1px;
+	border-style: none solid none none;
+	border-color: #8DB2E3;
+	background-color: #D9EAFD;
+	background-image: url('/images/ui-ng/viewers/selrolesviewer/add.png');
+	background-position: center center;
+	background-repeat: no-repeat
+}
+
+div.viewers-selrolesviewer-add:hover {
+	background-image: url('/images/ui-ng/viewers/selrolesviewer/add_hover.png');
+}
+
+/* DataView */
+div.viewers-selrolesviewer-dataview {
+	left: 80px;
+	width: 0px;
+	overflow: hidden;
+	border-width: 1px;
+	border-style: none solid none solid;
+	border-color: #8DB2E3;
+}
+
+#viewers-selrolesviewer {
+	background-color: #fff;
+}
+
+#viewers-selrolesviewer ul {
+	position: relative;
+	display: block;
+}
+
+#viewers-selrolesviewer ul li {
+	position: relative;
+	float: left;
+	background-image: url('/images/ui-ng/viewers/selrolesviewer/canvas.png');
+	margin: 5px;
+	height: 120px;
+	width: 120px;
+	cursor: pointer;
+	text-align: center;
+}
+
+#viewers-selrolesviewer ul li div {
+	position: absolute;
+	bottom: 25px;
+	width: 110px;
+	text-align: center;
+	padding-left: 5px;
+	overflow: hidden;
+	font-family: "Arial";
+	font-size: 12px;
+	color: #666;
+}
+
+#viewers-selrolesviewer ul li div.full {
+	position: absolute;
+	left: 5px;
+	top: 50px;
+	height: 15px;
+	white-space: nowrap;
+	width: auto;
+	padding: 5px;
+	display: none;
+	background-color: #FFF;
+	border-color: #CBD6ED;
+	border-width: 1px;
+	border-style: solid;
+	color: #333;
+	z-index: 2;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
+#viewers-selrolesviewer ul li div.full-show {
+	display: block;
+}
+
+#viewers-selrolesviewer ul li img.icon {
+	position: relative;
+	top: 12px;
+}
+
+#viewers-selrolesviewer ul li img.platform {
+	position: absolute;
+	top: 7px;
+	left: 6px;
+}
+
+#viewers-selrolesviewer ul li img.arch {
+	position: absolute;
+	top: 57px;
+	right: 7px;
+}
+
+#viewers-selrolesviewer ul li:hover {
+	background-image: url('/images/ui-ng/viewers/selrolesviewer/canvas_hover.png');
+}
+
+#viewers-selrolesviewer ul li.selrolesviewer-selected {
+	background-image: url('/images/ui-ng/viewers/selrolesviewer/canvas_selected.png');
+}
+
+#viewers-selrolesviewer ul li a {
+	display: none;
+	position: absolute;
+	left: 100px;
+	top: 5px;
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat
+}
+
+#viewers-selrolesviewer ul li:hover a {
+	background-image: url('/images/ui-ng/viewers/selrolesviewer/close.png');
+	display: block;
+}
+
+#viewers-selrolesviewer ul li:hover a:hover {
+	background-image: url('/images/ui-ng/viewers/selrolesviewer/close_hover.png');
+	display: block;
+}
+
+#viewers-selrolesviewer div.location {
+	position: absolute;
+	bottom: 10px;
+	height: 12px;
+	width: 110px;
+	text-align: center;
+}
+
+/* Scroll & filter blocks */
+div.viewers-selrolesviewer-scroll {
+	width: 40px;
+}
+
+div.viewers-selrolesviewer-scroll img {
+	position: absolute;
+	cursor: pointer;
+	top: 38px;
+	left: 8px;
+}
+
+div.viewers-selrolesviewer-scroll-disabled img {
+	cursor: default;
+}
+
+div.viewers-selrolesviewer-left {
+	left: 40px;
+}
+
+div.viewers-selrolesviewer-right {
+	right: 0px;
+	width: 40px;
+}
+
+div.viewers-selrolesviewer-filter-button {
+	background-image: url('/images/ui-ng/viewers/selrolesviewer/filter.png');
+	height: 29px;
+	top: 5px;
+	right: 7px;
+	width: 27px;
+	background-repeat: no-repeat
+}
+
+div.viewers-selrolesviewer-filter-button:hover {
+	background-image: url('/images/ui-ng/viewers/selrolesviewer/filter_hover.png');
+}
+
+div.viewers-selrolesviewer-filter-button-click {
+	background-image: url('/images/ui-ng/viewers/selrolesviewer/filter_input_right.png');
+}
+
+div.viewers-selrolesviewer-filter-button-click:hover {
+	background-image: url('/images/ui-ng/viewers/selrolesviewer/filter_input_right.png');
+}
+
+div.viewers-selrolesviewer-filter-input {
+	top: 5px;
+	right: 34px;
+	width: 121px;
+	height: 29px;
+}
+
+div.viewers-selrolesviewer-filter-input input {
+	border-width: 0px;
+	background-repeat: no-repeat;
+	background-image: url('/images/ui-ng/viewers/selrolesviewer/filter_input.png');
+	padding-left: 6px;
+	padding-top: 6px;
+	width: 115px;
+	height: 23px;
+}
+
+div.viewers-selrolesviewer-empty-text {
+	text-align: center;
+	width: 100%;
+	margin-top: 50px;
+}
+/**
+ * AddRolesViewer
+ */
+#viewers-addrolesviewer {
+	background-color: #fff;
+	padding-top: 19px;
+	padding-left: 23px;
+	padding-right: 23px;
+	padding-bottom: 19px;
+}
+
+#viewers-addrolesviewer div.block {
+	overflow: visible;
+	background-color: #FFF;
+	height: auto;
+	padding-bottom: 14px;
+}
+
+#viewers-addrolesviewer div.title {
+	cursor: pointer;
+	background-image: url('/images/ui-ng/viewers/addrolesviewer/contract.png');
+	background-color: #E8EDF7;
+	background-repeat: no-repeat;
+	height: 23px;
+
+	-moz-border-radius-topright: 4px;
+	-webkit-border-radius-topright: 4px;
+	border-top-right-radius: 4px;
+}
+
+#viewers-addrolesviewer div.title-contract {
+	background-image: url('/images/ui-ng/viewers/addrolesviewer/expand.png');
+}
+
+#viewers-addrolesviewer div.title-disabled {
+	background-image: url('/images/ui-ng/viewers/addrolesviewer/expand_disable.png');
+	background-color: #EFEFEF;
+	cursor: default;
+}
+
+#viewers-addrolesviewer div.title div {
+	border-color: #CBD6ED;
+	border-style: none none solid;
+	border-width: 1px;
+	margin-left: 24px;
+	height: 22px;
+	position: relative;
+}
+
+#viewers-addrolesviewer div.title-disabled div {
+	border-color: #DCDCDC;
+}
+
+#viewers-addrolesviewer div.title span {
+	position: absolute;
+	top: 4px;
+	left: 8px;
+	font-family: "Verdana";
+	font-size: 12px;
+	font-weight: bold;
+	color: #15428B;
+}
+
+#viewers-addrolesviewer div.title-disabled span {
+	color: #666666;
+}
+
+#viewers-addrolesviewer ul {
+	overflow: hidden;
+	background-color: #F1F4FA;
+	display: block;
+	height: auto;
+	padding: 19px 23px 5px 23px;
+	position: relative;
+}
+
+#viewers-addrolesviewer ul.hidden {
+	display: none;
+}
+
+#viewers-addrolesviewer ul li {
+	float: left;
+	width: 106px;
+	height: 106px;
+	overflow: hidden;
+	background-color: #FFF;
+	margin-right: 28px;
+	margin-bottom: 31px;
+	padding: 6px;
+	font-size: 12px;
+	text-align: center;
+
+	border-width: 1px;
+	border-color: #C0D5FA;
+	border-style: solid;
+
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
+#viewers-addrolesviewer ul li span {
+	font-size: 11px;
+}
+
+#viewers-addrolesviewer div.fixed {
+	position: relative;
+	height: 0px;
+}
+
+#viewers-addrolesviewer div.arch {
+	position: absolute;
+	top: 90px;
+	text-align: right;
+	width: 106px;
+}
+
+#viewers-addrolesviewer div.platforms {
+	position: absolute;
+	text-align: center;
+	top: 70px;
+	width: 106px;
+}
+
+#viewers-addrolesviewer ul li div.info {
+	position: absolute;
+	visibility: hidden;
+	width: 112px;
+	height: 22px;
+	background-color:#D9EAFD;
+	padding: 3px;
+
+	border-width: 1px;
+	border-color: #C0D5FA;
+	border-style: solid;
+	-moz-border-radius-bottomright: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-webkit-border-radius-bottomright: 4px;
+	-webkit-border-radius-bottomleft: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+#viewers-addrolesviewer ul li img.arch {
+	margin-left: 70px;
+	margin-top: 20px;
+}
+
+#viewers-addrolesviewer ul li:hover {
+	background-color: #EEF5FD;
+}
+
+#viewers-addrolesviewer ul li.addrolesviewer-selected {
+	-moz-border-radius-bottomright: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	-webkit-border-radius-bottomright: 0px;
+	-webkit-border-radius-bottomleft: 0px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+/*
+ * ListView
+ */
+.x-list-header {
+	position: relative;
+	height: 26px;
+}
+
+.x-list-body dt em {
+	-moz-user-select: text;
+}
+
+.x-list-wrap {
+	overflow: hidden !important;
+}
+
+dl.viewers-listview-row {
+	border-width: 1px;
+	border-collapse: collapse;
+	border-style: dashed;
+	border-color: #FFFFFF #EDEDED #EDEDED;
+}
+
+dl.viewers-listview-row-alt {
+	background-color: #F9FAFF;
+}
+
+dl.viewers-listview-row-over {
+	background-color: #EFEFEF;
+	border-color: #DDDDDD;
+}
+
+dl.viewers-listview-row-selected {
+	background-color:#DFE8F6 !important;
+	border-color:#A3BAE9;
+}
+
+dl.viewers-listview-row-red {
+	background-color: pink !important;
+}
+
+/* @TODO: fix auto load elements (discover optimal number elements) */
+dl.viewers-listview-row-expand dt {
+	white-space: normal !important;
+	overflow: auto !important;
+	word-wrap: break-word;
+}
+
+.x-list-header-inner div em, dl.viewers-listview-row em {
+	font-family: "Lucida Grande",verdana,arial,helvetica,sans-serif;
+	font-size: 14px;
+	line-height: normal;
+	-webkit-user-select: auto;
+}
+
+div.viewers-listview-empty {
+	text-align: center;
+	font-size: 12px;
+	padding: 10px;
+}
+
+div.viewers-listview-columns-icon {
+	cursor: pointer;
+	position: absolute;
+	right: 0px;
+}
+
+/* row-options */
+.viewers-listview-row-options {
+	padding: 2px 0px 0px 0px !important;
+}
+
+div.viewers-listview-row-options-btn {
+	font: normal 13px/1.2em Arial,"Lucida Grande",Verdana,sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	font-variant: normal;
+	line-height: 1.65em;
+	font-size-adjust: none;
+	font-stretch: normal;
+
+	text-align: center;
+	display: block;
+	position: relative;
+	text-decoration: none;
+	background: url('/images/ui-ng/viewers/listview/bg-control.gif') no-repeat left;
+	width: 86px;
+	height: 19px;
+	overflow: hidden;
+	padding: 0 20px 0 8px;
+	color: #666 !important;
+	z-index: 19;
+	white-space: nowrap;
+}
+
+.viewers-listview-row-options-btn .viewers-listview-row-options-trigger {
+	width: 20px;
+	height: 19px;
+	background: url('/images/ui-ng/viewers/listview/control-pimp.gif') no-repeat #fafafa;
+	overflow: hidden;
+	font-size: 1px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 19;
+}
+
+.viewers-listview-row-options-btn:hover .viewers-listview-row-options-trigger {
+	background-image: url('/images/ui-ng/viewers/listview/control-pimp-hover.gif');
+}
+
+.viewers-listview-row-order-plugin {
+	padding: 0px !important;
+}
+
+/*
+ * object status
+ */
+.status-ok {
+        color:green;
+}
+.status-ok-pending {
+        color:#666633;
+}
+.status-pending {
+        color:#FF9900;
+}
+.status-fail {
+        color:red;
+}
+
+/*
+ * menu icons
+ */
+.scalr-menu-icon-launch {
+	background: url('/images/ui-ng/icons/menu_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px 0px;
+}
+
+.scalr-menu-icon-terminate {
+	background: url('/images/ui-ng/icons/menu_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -16px;
+}
+
+.scalr-menu-icon-delete {
+	background: url('/images/ui-ng/icons/menu_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -32px;
+}
+
+.scalr-menu-icon-execute {
+	background: url('/images/ui-ng/icons/menu_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -48px;
+}
+
+.scalr-menu-icon-info {
+	background: url('/images/ui-ng/icons/menu_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -64px;
+}
+
+.scalr-menu-icon-reboot {
+	background: url('/images/ui-ng/icons/menu_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -80px;
+}
+
+.scalr-menu-icon-logs {
+	background: url('/images/ui-ng/icons/menu_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -96px;
+}
+
+.scalr-menu-icon-stats {
+	background: url('/images/ui-ng/icons/menu_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -112px;
+}
+
+.scalr-menu-icon-configure {
+	background: url('/images/ui-ng/icons/menu_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -128px;
+}
+
+.scalr-menu-icon-edit {
+	background: url('/images/ui-ng/icons/menu_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -144px;
+}
+
+.scalr-menu-icon-settings {
+	background: url('/images/ui-ng/icons/menu_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -160px;
+}
+
+.scalr-menu-icon-mysql {
+	background: url('/images/ui-ng/icons/menu_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -176px;
+}
+
+.scalr-mb-icon-info {
+	background: url('/images/ui-ng/icons/mb_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px 0px;
+}
+
+.scalr-mb-icon-warning {
+	background: url('/images/ui-ng/icons/mb_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -32px;
+}
+
+.scalr-mb-icon-error {
+	background: url('/images/ui-ng/icons/mb_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -64px;
+}
+
+.scalr-mb-icon-save {
+	background: url('/images/ui-ng/icons/mb_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -96px;
+}
+
+.scalr-mb-icon-action {
+	background: url('/images/ui-ng/icons/mb_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -128px;
+}
+
+.scalr-mb-icon-reboot {
+	background: url('/images/ui-ng/icons/mb_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -160px;
+}
+
+.scalr-mb-icon-delete {
+	background: url('/images/ui-ng/icons/mb_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -192px;
+}
+
+.scalr-mb-icon-launch {
+	background: url('/images/ui-ng/icons/mb_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -224px;
+}
+
+.scalr-mb-icon-terminate {
+	background: url('/images/ui-ng/icons/mb_icons_sprite.png') no-repeat;
+	height:16px;
+	width:16px;
+	background-position: 0px -256px;
+}
+
+/*
+ * mb-icons
+ */
+.scalr-mb-instance-terminating {
+	background: transparent url('/images/ui-ng/icons/mb/instance_terminate.anim.gif') no-repeat top left;
+	height: 36px !important;
+}
+
+.scalr-mb-instance-rebooting {
+	background: transparent url('/images/ui-ng/icons/mb/instance_reboot.anim.gif') no-repeat top left;
+	height: 36px !important;
+}
+
+.scalr-mb-farm-building {
+	background: transparent url('/images/ui-ng/icons/mb/farm_save.anim.gif') no-repeat top left;
+	height: 36px !important;
+}
+
+.scalr-mb-farm-launching {
+	background: transparent url('/images/ui-ng/icons/mb/farm_save.anim.gif') no-repeat top left;
+	height: 36px !important;
+}
+
+.scalr-mb-object-removing {
+	background: transparent url('/images/ui-ng/icons/mb/object_remove.png') no-repeat top left;
+	height: 36px !important;
+}
+
+.scalr-mb-info {
+	background: transparent url('/images/ui-ng/icons/mb/info.gif') no-repeat top left;
+}
+
+
+
+/*
+ * Scalr Error message
+ */
+.viewers-messages {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px 30px 5px 30px;
+	cursor: pointer;
+	margin-top: 3px;
+
+	font-family: "Arial";
+	font-size: 14px;
+}
+
+.viewers-hiddenmessage {
+	display: none;
+}
+
+.viewers-messages-close {
+	position: absolute;
+	right: 5px;
+	top: 4px;
+	display: none;
+}
+
+.viewers-messages-close-show {
+	display: block !important;
+}
+
+.viewers-errormessage {
+	background: #FEF2EB url('/images/ui-ng/icons/message/error.png') no-repeat scroll 5px 3px;
+	border: 1px solid #FD721E;
+	color: #CA4100;
+	position: relative;
+}
+
+.viewers-infomessage {
+	background: #FEFDE0 url('/images/ui-ng/icons/message/info.png') no-repeat scroll 5px 3px;
+	border: 1px solid #A4A4A4;
+	color: #333333;
+	position: relative;
+}
+
+.viewers-successmessage {
+	background: #EDFCEE url('/images/ui-ng/icons/message/success.png') no-repeat scroll 5px 3px;
+	border: 1px solid #5FBF59;
+	color: #3F7D00;
+	position: relative;
+}
+
+.viewers-warningmessage {
+	background: #FFF4CC url('/images/ui-ng/icons/message/warning.png') no-repeat scroll 5px 3px;
+	border: 1px solid #CEA16D;
+	color: #974706;
+	position: relative;
+}
+
+.viewers-infopanel {
+	font-size: 12px;
+	background-image: url("/images/ui-ng/icons/message/info.png");
+	background-repeat: no-repeat;
+	background-position: 7px 7px;
+	background-color: #FEFDE0;
+	border: 1px solid #A4A4A4;
+	color: #333333;
+	padding: 10px 10px 10px 35px;
+}
+
+.viewers-warningpanel {
+	font-size: 12px;
+	background-image: url("/images/ui-ng/icons/message/warning.png");
+	background-repeat: no-repeat;
+	background-position: 7px 7px;
+	background-color: #F4F4F4;
+	border: 1px solid #A4A4A4;
+	color: #666666;
+	padding: 10px 10px 10px 35px;
+}
+
+/*
+ * Farm roles edit
+ */
+div.viewers-farmrolesedit-tabs {
+	width: 200px;
+	float: left;
+	background-color: #DFE8F6;
+}
+
+div.viewers-farmrolesedit-tab {
+	width: 200px;
+	font-size: 12px;
+	height: 26px;
+	background-color: #D9EAFD;
+	position: relative;
+	border-style: none none solid none;
+	border-width: 1px;
+	border-color: #99BBE8;
+	cursor: pointer;
+	font-family: Arial,"Lucida Grande",Verdana,sans-serif;
+}
+
+div.viewers-farmrolesedit-tab span {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+
+div.viewers-farmrolesedit-tab:hover {
+	background-color: #CFD8E6;
+}
+
+div.viewers-farmrolesedit-tab-selected {
+	background-color: #FFF;
+	color: black;
+	/*border-style: none none solid none;*/
+}
+
+div.viewers-farmrolesedit-content {
+	float: left;
+}
+
+/*
+ * Scripting tab
+ */
+#viewers-farmrolesedit-tab-scripting {
+	background-color: #fff;
+}
+
+#viewers-farmrolesedit-tab-scripting div.element {
+	border-width: 1px;
+	border-style: none none dotted none;
+	border-color: #99BBE8;
+	padding: 5px;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+#viewers-farmrolesedit-tab-scripting div.element:hover {
+	background-color: #ebf3fd;
+}
+
+#viewers-farmrolesedit-tab-scripting div.selected {
+	background-color: #DFE8F6 !important;
+}
+
+#viewers-farmrolesedit-tab-scripting div.empty {
+	font-size: 12px;
+	padding: 10px;
+	padding-left: 50px;
+}
+
+/* hack for ie and fieldsets without header */
+.ext-ie .x-fieldset-body-noheader {
+	padding-top: 10px;
+}
+
+.viewers-panel-footer {
+	background-color: #DFE8F6;
+}
+
+/* ultra-large buttons (64px) (on top) */
+
+.x-btn-text-icon .x-btn-icon-ultra-large-top .x-btn-text{
+    background-position: center 0;
+	background-repeat: no-repeat;
+    padding-top: 78px;
+	width: 94px;
+}
+
+/* Red error border on checkgroup */
+.x-form-check-group {
+	border-width: 1px;
+	border-style: solid;
+	border-color: transparent;
+}
+.x-form-check-group.x-form-invalid {
+	border-color: #C30 !important;
+}
+
+/* Download icon */
+.x-btn-download-icon {
+	background-image: url(/images/ui-ng/icons/download_icon_16x16.png) !important;
+}
+
+/* Hack for emprty value combobox */
+.x-combo-list-item {
+	height: 14px;
+}
+
+/* Red error border on composite field */
+.x-form-invalid.x-form-composite {
+	background-color: transparent !important;
+}
+
+.x-item-disabled {
+	color: black !important;
+}
+
+.x-trigger-noedit {
+	color: black !important;
+}

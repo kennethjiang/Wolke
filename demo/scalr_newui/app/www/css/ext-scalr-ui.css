@@ -1,0 +1,49 @@
+/**
+ * ExtJS overrides
+ */
+.x-combo-list-item {
+	min-height:12px;
+}
+
+
+
+.ext-mb-content
+{
+	height:100% !important;
+}
+
+.ext-mb-instance-terminating
+{
+	background:transparent url(/images/gui_icons/instance_terminate.anim.gif) no-repeat top left;
+	height:36px !important;
+}
+
+.ext-mb-instance-rebooting
+{
+	background:transparent url(/images/gui_icons/instance_reboot.anim.gif) no-repeat top left;
+	height:36px !important;
+}
+
+.ext-mb-farm-building
+{
+	background:transparent url(/images/gui_icons/farm_save.anim.gif) no-repeat top left;
+	height:36px !important;
+}
+
+.ext-mb-object-removing
+{
+	background:transparent url(/images/gui_icons/object_remove.png) no-repeat top left;
+	height:36px !important;
+}
+
+.ext-mb-info
+{
+	background:transparent url(/images/gui_icons/info.gif) no-repeat top left;
+}
+
+.ext-ie .ux-gridviewer
+{
+	margin-left:-5px;
+	margin-right:-5px;
+	padding-left:5px;
+}

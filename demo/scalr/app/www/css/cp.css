@@ -1,0 +1,120 @@
+@CHARSET "UTF-8";
+
+
+#body-container
+{
+	padding-left:5px;
+	padding-right:5px;
+}
+
+#header-title
+{
+	margin-left:10px;
+	margin-top:5px;
+	padding-bottom:7px;
+}
+
+.header-message
+{
+	margin:0px;
+	margin-top:5px;
+	margin-bottom:5px;
+	font-size:10pt;
+	padding: 4px; 
+	padding-left: 35px; 
+	padding-bottom:4px;
+	line-height:18px;
+	min-height:26px !important;
+}
+
+.error-message
+{
+	background: url(/images/icon_err.gif) no-repeat 5px 2px; 
+	background-color: #FFE3D9; 
+	border:1px solid #E63512; 
+	color: #CB3216;  
+}
+
+.warn-message
+{
+	background: url(/images/warn.png) no-repeat 7px 5px; 
+    background-color: #fffaaa; 
+    border:1px solid #e07112; 
+    color: #cf650e;
+}
+
+.success-message
+{
+	background: url(/images/ok.png) no-repeat 5px 4px; 
+    background-color: #E2F9E3; 
+    border:1px solid #99CC99; 
+    color: #3F7D00; 
+    
+}
+
+.info-message
+{
+	background: url(/images/icon_ihelp.gif) no-repeat 7px 7px;
+	background-color:#FFFFE1;
+	border:1px solid #CCCCCC;
+}
+
+.ext-ie .grid-padding-fix
+{
+	padding-right:5px;
+}
+
+.ext-ie8 .x-small-editor .x-form-text {
+    margin-top:0px !important; /* ie bogus margin bug */
+}
+
+.ext-strict .ext-ie8 .x-form-cb-label
+{
+	top:0px;	
+}
+
+.ext-ie8 .x-toolbar DIV.xtb-text
+{
+	padding-top:0px;	
+}
+
+.text
+{
+	margin:5px;
+}
+
+.th
+{
+	padding:5px;
+	background-color: #C3D9FF;
+}
+
+.btn
+{
+	font-size:10pt;
+	padding:2px;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.role-info-field
+{
+	padding:5px;
+	padding-bottom:8px;
+	font-size:12px;
+	font-family:"Lucida Grande",verdana,arial,helvetica,sans-serif;
+	clear: both;
+}
+
+.role-info-field-name
+{
+	width:120px;
+	float:left;
+	margin-right:5px;
+}
+
+.role-info-field-value
+{
+	float:left;
+	width:160px;
+}

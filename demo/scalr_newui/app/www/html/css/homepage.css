@@ -1,0 +1,120 @@
+#chart {
+	height: 350px;
+	margin-top: 1px;
+	background: #616161 url(../images/topbar-bg.gif) repeat-x;
+}
+
+#chartBox {
+	padding: 10px;
+}
+
+#chartTable {
+	float: left;
+	width: 420px;
+	height: 330px;
+	background: url('../images/bg_table.png') left bottom no-repeat;
+}
+
+.tag {
+	float: left;
+	margin-right: 2px;
+	width: 96px;
+	height: 32px;
+}
+
+.tag a {
+	display: block;
+	width: 96px;
+	height: 32px;
+	background: url('../images/tag2a.png') left top no-repeat;
+	color: #fff;
+	text-align: center;
+	line-height: 27px;
+	text-decoration: none;
+	outline: none;
+}
+
+.tag a:hover {
+	background-image: url('../images/tag2b.png') !important;
+	color: #fff !important;
+	text-decoration: none !important;
+}
+
+#tag1 { width: 54px; }
+#tag1 a { width: 54px; background-image: url('../images/tag1b.png'); }
+#tag1 a:hover { background-image: url('../images/tag1b.png') !important; }
+#tag5 { width: 70px; margin-right: 0; }
+#tag5 a { width: 70px; background-image: url('../images/tag5a.png'); }
+#tag5 a:hover { background-image: url('../images/tag5b.png') !important; }
+
+.tableA {
+	width: 420px;
+}
+
+#graph {
+	float: right;
+	width: 450px;
+	height: 330px;
+	text-align: center;
+}
+
+#graphBox {
+	padding: 10px;
+	background: url('../images/bg_graph.png') no-repeat;
+}
+
+#main {
+	display: block;
+	margin-top: 5px;
+	text-align: center;
+	border: 1px solid #99BBE8;
+	height: 520px;
+
+
+}
+#ServerGroup {
+	float:left;
+	display: block;
+	margin-top: 50px;
+	margin-left: 36%;
+}
+#Server {
+    float:left;
+	display: block;
+	margin-top: 50px;
+	margin-left: 10px;
+}
+.ServerC {
+	width: 120px;
+	height: 120px;
+	border: 1px solid #ccc;
+	background-color: #E4E5E6;
+	text-align: center;	
+}
+
+
+.ServerBox {
+	margin-top: 5px;
+	padding: 10px 14px;
+	text-align: center;
+	vertical-align: middle;
+
+}
+
+.ServerBrief {
+	line-height: 1.8em;
+	padding: 5px;
+}
+
+
+.more {
+	margin-top: 10px;
+	text-align: right;
+}
+#ditu {
+	text-align: center;
+	vertical-align: bottom;
+	margin-top: 200px;
+	overflow: hidden;
+
+}

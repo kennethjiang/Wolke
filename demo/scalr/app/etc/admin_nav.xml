@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<menu>
+	<node title="用户">
+		<item href="clients_add.php">添加用户</item>
+		<item href="clients_view.php" search="SELECT COUNT(*) FROM clients WHERE email LIKE '%s' OR aws_accountid LIKE '%s' OR fullname LIKE '%s'">用户列表</item>
+	</node>
+	
+	<node title="服务器组">
+		<item href="/#/farms/view" search="SELECT COUNT(*) FROM farms WHERE name LIKE '%s'">查看所有</item>
+	</node>	
+
+	<node title="日志">
+		<item href="syslogs_view.php">系统日志</item>
+		<item href="logs_view.php">事件日志</item>
+		<item href="scripting_logs_view.php">脚本日志</item>
+	</node>
+
+	<node title="服务角色">
+		<item href="#/roles/view" search="SELECT COUNT(*) FROM roles WHERE name LIKE '%s'">查看所有</item>		
+	</node>
+
+	<node title="脚本">
+		<item href="#/scripts/view">查看所有</item>		
+	</node>
+
+	<node title="设置">
+		<item href="default_records.php">默认DNS记录</item>
+		<separator />
+		<node title="服务角色">
+			<item href="#/roles/view?origin=Shared">查看所有</item>
+			<item href="#/roles/edit">添加</item>
+		</node>
+		<separator />
+		<item href="settings_core.php">核心设置</item>
+	</node>
+	
+</menu>

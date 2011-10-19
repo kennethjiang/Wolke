@@ -1,0 +1,157 @@
+@CHARSET "UTF-8";
+
+body {
+	background: transparent url(/images/body-bg.gif) repeat-x;
+}
+
+#topbar-wrap {
+	position:relative;
+	top:0;
+	left:0;
+	padding:5px 5px 10px;
+}
+
+#topbar-wrap #topbar {
+	position:relative;
+	top:0;
+	left:0;
+	height:45px;
+ 	padding:5px;
+	border: 1px solid #99BBE8;
+
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+
+
+	background: #c9d9ed url(/images/topbar-bg.gif) repeat-x;
+	font-family:"Lucida Grande",verdana,arial,helvetica,sans-serif;
+	font-size:10pt;
+	overflow:hidden;
+}
+#topbar #logo {
+	width:50px;
+	height:44px;
+}
+#topbar #logo a {
+	display: block;
+	width:50px;
+	height:44px;
+	overflow:hidden;
+	text-indent:-9999px;
+	background:transparent url(/images/logo-topbar.png) no-repeat
+}
+
+#topbar #searchbox {
+	position:absolute;
+	left:61px;
+	top:15px;
+}
+#topbar #searchbox input[type="text"] {
+	font-size:15px !important;
+	width:125px;
+}
+#topbar #search_button {
+	display: inline-block;
+	margin-left: 3px;
+}
+
+#search_string
+{
+	margin-top:1px;
+}
+
+.ext-safari #search_string
+{
+	margin-top:3px;
+}
+
+#search_button
+{
+	vertical-align:middle;
+}
+
+#topbar #logout_button {
+	display: inline-block;
+	vertical-align: middle;
+	position:absolute;
+	top:14px;
+	right:10px;
+}
+
+
+
+
+#topbar #navmenu {
+	position:absolute;
+	left:280px;
+	top:16px;
+}
+.ext-safari #topbar #navmenu {
+	top:17px;
+}
+
+/** Customize ExtJS toolbar  */
+#topbar #navmenu .x-toolbar {
+	padding:0;
+	border:none;
+	background:none;
+	font-size:10pt;
+	font-family: "Lucida Grande",verdana,arial,helvetica,sans-serif;
+}
+#navmenu .x-toolbar td,
+#navmenu .x-toolbar span,
+#navmenu .x-toolbar input,
+#navmenu .x-toolbar div,
+#navmenu .x-toolbar select,
+#navmenu .x-toolbar label,
+#navmenu .x-toolbar .x-btn button,
+.x-btn-text {
+	font-family: "Lucida Grande",verdana,arial,helvetica,sans-serif !important;
+	font-size:9pt !important;;
+}
+#topbar .x-btn-small .x-btn-text {
+	height: auto;
+	padding-top:0px;
+	line-height:18px;
+}
+
+.ext-gecko #topbar .x-btn-text
+{
+	padding:2px;
+}
+
+#navmenu .x-btn-with-menu .x-btn-center em {
+	background-position: right 2px;
+}
+
+#topbar #toplinks {
+	position:absolute;
+	right:70px;
+	top:15px;
+	font-size:10pt;
+}
+#topbar #toplinks a {
+	padding-right:10px;
+	color:black;
+	text-decoration: underline;
+}
+#topbar #toplinks a:hover {
+	text-decoration: none;
+}
+#topbar #toplinks a.new {
+	padding-right:0;
+}
+#topbar #toplinks sup.new {
+	padding-right:10pt;
+	color:red;
+	font-weight: bold;
+	font-face:Arial, Helvetica, sans-serif;
+}
+
+#topfoot {
+	height: 30px;
+}

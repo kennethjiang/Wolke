@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=windows-1251" />
+	<title>FC-TrackBar</title>
+	<style type="text/css">
+		body, html, h1 {padding:0; margin:0; font:12px arial;}
+		body {padding:10px 30px;}
+		h1 {font:bold 20px Arial; color:#A1A1A1; margin:30px 0 10px 0;}
+		input {border:1px solid #666; font:12px arial; width:50px;}
+		div {padding-bottom:15px; font:11px tahoma;}
+	</style>
+	<link rel="stylesheet" type="text/css" href="trackbar.css" />
+	<script type="text/javascript" src="jquery-1.2.3.min.js"></script>
+	<script type="text/javascript" src="jquery.trackbar.js"></script>
+<script>
+rr = '00';
+gg = '00';
+bb = '00';
+
+function setColor(r, g, b) {
+	if (r != null) rr = decToHexColor(r);
+	if (g != null) gg = decToHexColor(g);
+	if (b != null) bb = decToHexColor(b);
+	document.getElementById("colorId").style.backgroundColor = "#" + rr + gg + bb;
+}
+function decToHexColor(dec) {
+	var hex = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F']; 
+	dec = parseInt(dec); 
+	return hex[parseInt(dec / 16)] + hex[dec % 16]; 
+} 
+
+function setWord(l, r) {
+	var eng = ['',
+		'A','B','C','D','E','F','G','H','I','J','K','L','M',
+		'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
+	];
+	document.getElementById("firstChar").value = eng[l];
+	document.getElementById("secondChar").value = eng[r];
+}
+
+$(document).ready(function(){
+	// Demo 1
+	$('#qwe').trackbar();
+	// Demo 2
+	$('#asd').trackbar({
+		onMove : function() {
+			
+		},
+		dual : false, // two intervals
+		width : 300, // px
+		leftLimit : 1900, // unit of value
+		leftValue : 1950, // unit of value
+		rightLimit : 2000, // unit of value
+		rightValue : 1980, // unit of value
+		showSmallTicks : true,
+		showBigTicks : true,
+		bigTicks : 4,
+		hehe : ":-)"
+	});
+	// Demo 3
+	$('#zxc1').trackbar({
+		onMove : function() {
+			setColor(this.leftValue, null, null);
+		},
+		dual : false, // two intervals
+		width : 300, // px
+	//	leftLimit : 0, // unit of value
+		leftValue : 0, // unit of value
+		rightLimit : 255, // unit of value
+		rightValue : 0, // unit of value
+		hehe : ":-)"
+	});
+	$('#zxc2').trackbar({
+		onMove : function() {
+			setColor(null, this.leftValue, null);
+		},
+		dual : false, // two intervals
+		width : 300, // px
+	//	leftLimit : 0, // unit of value
+		leftValue : 0, // unit of value
+		rightLimit : 255, // unit of value
+		rightValue : 0, // unit of value
+		hehe : ":-)"
+	});
+	$('#zxc3').trackbar({
+		onMove : function() {
+			setColor(null, null, this.leftValue);
+		},
+		dual : false, // two intervals
+		width : 300, // px
+	//	leftLimit : 0, // unit of value
+		leftValue : 0, // unit of value
+		rightLimit : 255, // unit of value
+		rightValue : 0, // unit of value
+		hehe : ":-)"
+	});
+	// Demo 4
+	$('#zzz').trackbar({
+		onMove : function() {
+			setWord(this.leftValue, this.rightValue);
+		},
+		width : 200, // px
+		leftLimit : 1, // unit of value
+		leftValue : 1, // unit of value
+		rightLimit : 26, // unit of value
+		rightValue : 26, // unit of value
+		clearLimits : true,
+		clearValues : true,
+		hehe : ":-)"
+	});
+});
+</script>
+</head>
+<body>
+<h1>Indicate the price of voucher</h1>
+<div>all default</div>
+<div id="qwe"></div>
+
+<h1>Point out the the year of birth</h1>
+<div>dual: false, width: 300, leftLimit: 1900, leftValue: 1950, rightLimit: 2000, rightValue: 1980</div>
+<div id="asd"></div>
+
+<h1>Select color (RGB)</h1>
+<div>dual: false, width: 300, leftValue: 0, rightLimit: 255, rightValue: 0</div>
+<div id="colorId" style="border:1px solid #000; background-color:#000; width:50px; height:50px;"></div>
+<div id="zxc1"></div>
+<div id="zxc2"></div>
+<div id="zxc3"></div>
+
+<h1>Choose the letter</h1>
+<div>width: 200, leftValue: 1, rightLimit: 26, rightValue: 26, clearLimits: true</div>
+<form action="#">
+	<input type="text" id="firstChar" value="А" readonly="readonly" /> &mdash; <input type="text" id="secondChar" value="Я" readonly="readonly" />
+</form>
+<br/>
+<div id="zzz"></div>
+
+</body>
+</html>

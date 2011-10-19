@@ -1,0 +1,59 @@
+/*** Default Option ***/
+#header {
+	background: #C9D9ED url(../images/dise_03.jpg) no-repeat right top;
+}
+.wrap {
+
+	margin: 0 auto;
+	text-align: left;
+
+
+}
+#logo {
+	float: left;
+	width: 100px;
+
+
+
+}
+
+#menu {
+	float: left;
+	width: 250px;
+	margin-top: 32px;
+	font-size: 14px;
+	text-align: center;
+
+
+
+}
+
+#menu a {
+	float: left;
+	display: block;
+	width: 82px;
+	height: 28px;
+	background: url(../images/tag1a.png) left top;
+	text-indent: -9999px;
+	text-align: left;
+	margin-right: 1px;
+
+
+}
+#menu a.menu1 {
+	width: 82px;
+}
+#menu a.menu1just, #menu a.menu1:hover { background-image: url(../images/tag1b.png); }
+#menu a.menu2 {
+	background-image: url(../images/tag2a.png);
+}
+#menu a.menu2just, #menu a.menu2:hover { background-image: url(../images/tag2b.png); }
+#menu a.menu3 { background-image: url(../images/tag3a.png); }
+#menu a.menu3just, #menu a.menu3:hover { background-image: url(../images/tag3b.png); }
+
+.loginout {
+	margin-top: 20px;
+	text-align: right;
+	margin-right: 10px;
+
+}

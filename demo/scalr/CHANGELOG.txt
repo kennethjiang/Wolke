@@ -1,0 +1,276 @@
+2.2.1 Stable Release [April 16 2011]
+* Various bugfixes and improvements
+
+2.2.0 Stable Release [March 14 2011]
+* Rackspace support
+* Nimbula support
+* Multi cloud locations for Eucalyptus
+* Chef based Role builder
+* New UI controller: faster, more pleasant Scalr UI
+* HTTPS support for Amazon ELB
+* Initial version of new Scalr Dashboard
+* Thousands of bugfixes and small improvements
+
+2.1.1 Stable Release [November 12 2010]
+* Various bugfixes and improvements
+
+2.1.0 Stable Release [November 1 2010]
+* Eucalyptus support
+* Multi Cloud Farms 
+* Service Configuration Manager 
+* Custom scaling metrics 
+* Multi-images roles 
+* New farm builder interface 
+* Support for ELB sticky sessions 
+* API 2.1.0: added new methods for managing your Apache vhosts
+* Ability to set VPC for farm role
+* Various bugfixes and improvements
+
+2.0.0 Stable Release [September 14 2010]
+* Scalarizr. Supported os: Ubuntu 8.04, Ubuntu 10.04, Debian 5, CentOS 5, Fedora 8, Fedora 12, Fedora 13 (This list will be extended within the next releases) 
+* Ability to import non-scalr instances using Scalarizr. 
+* Removed "Synchronize to all". Added "Create server image" instead. New object - BundleTask. 
+* Code responsible for working with EBS, ELB has beed rewritten. Fixed tons of issues. 
+* New DNS manager. Increased stability and speed, decreased number bugs and fails. 
+* API 2.0: Added methods for creating DNS zones and Create server snapshots! 
+* New apache virtualhosts manager. 
+* Improved MySQL status page. 
+* Faster UI (Removed tons of legacy code, optimized Javascript) 
+* Pages for checking full information about servers and farm roles. 
+* AWS platform changes: Added asia region, RDS as cloud platform. 
+* Improved scaling algos and better logging. Now you can see why your role was scalled up or scalled down. 
+* Scalr will show warnings in UI if amazon has issues posted on status.aws.amazon.com page.
+
+
+1.2.0 Stable Release [January 13 2010]
+Events system improvements:
+* Added new events: OnDNSZoneUpdated, OnEBSVolumeAttached
+
+Scripting engine improvements:
+* Added the %zone_name% variable for scripts executed on DNSZoneUpdate event
+* Added the %new_ip_address% variable for scripts executed on IPAddressChanged event
+* Added the %volume_id% and %mountpoint% variables for scripts executed on EBSVolumeMounted event
+* The ability to execute scripts from the Scripts view page.
+
+Snapshots manager improvements:
+* Remove multiple snapshots in one time
+* Share snapshots!
+
+API improvements:
+* Added methods: LaunchInstance, TerminateInstance, GetFarmDetails, GetScriptDetails, RebootInstance, GetEvents, GetLogs
+* Added methods for working with DNS zones: ListDNSZones, ListDNSZoneRecords, AddDNSZoneRecord and RemoveDNSZoneRecord
+* Improved the ExecuteScript method.
+* Added LA for each instance to the GetFarmDetails method
+* Added the ability to execute scripts with specified revision and parameters
+
+Core improvements:
+* Amazon RDS support
+* Amazon Spot instances support.
+* Amazon CloudWatch support (fine grained monitoring)
+* Amazon VPC support (enterprise feature, deploy on non-shared servers)
+* Rewrote the “Synchronize to all” feature. Cleaner and more reliable now.
+* Same goes for AutoEBS and AutoEIP. Cleaner and more reliable.
+* When you create a new AMI for a custom role, you can now switch over to it immediately.
+* And the long awaited “Keep me logged in” checkbox on the login page!
+* Filters for instances on the Servers view page.
+* CloudFront distributions for domains not managed by Scalr.
+* The ability to remove Elastic Load Balancers.
+* Support for new region: us-west-1 (deploy on the west coast!)
+* A new page with more details on the instance.
+* Increased page load speed. Optimized js code. (faster, better interface!)
+* An improved MySQL status page for your Farms
+* The ability to set whether Scalr should terminate or reboot instances that fail to respond to SNMP calls.
+* The ability to slowdown the scaling process
+* Support for new instance types, the high memory instances (32 and 68GB of memory)
+* The ability to add Google Apps MX records in the Zone Edit page in a single click.
+* The ability to edit system DNS records. For advanced clients.
+* The ability to set both size and snapshot for Role auto EBS (previously just one)
+* Added ability to edit farm role specified security group
+* Added Hide terminated instances checkbox on instances list.
+* Added ability to view all instances (include non-scalr ones)
+* Added ability to set system timezone for clients (Logs, Events, API logs)
+* Fixed bug in garbage.php with “select all” checkbox
+* Fixed bug with default SSH port (see thread)
+* More than 200 bugs was fixed and tons of other internal improvements.
+
+
+1.1.0 [July 31 2009]
+* Scalr API (TerminateFarm, LaunchFarm, ListRoles, GetFarmStats, ExecuteScript, ListFarms, ListScripts, ListApplications)
+* Support for Elastic Load Balancer
+* Rotating EBS snapshots created on MySQL EBS Role
+* New scaling algorithms:
+  - Scaling based on RAM usage 
+  - Scaling based on Date/Time 
+* Various UI improvements
+* Various bugfixes
+
+1.0 Stable Relase [June 25 2009]
+* Exclude role from DNS zone
+* New scaling subsystem. SQS queue size, LA, Bandwidth based scaling algorithms 
+* Configurable scaling polling interval. (How frequently Scalr will check  the value and react.) 
+* Support for  wildcards in A records. 
+* New filters in interface for scripts and role views. 
+* Interface facelifted with the help of  extjs framework, 
+* Set roles launch order (The order which roles will be booting up in). 
+* Support for reserved instances. 
+* Refactored farm add/edit page (new glancing js) 
+
+
+
+1.0 RC5 [May 6 2009]
+* EBS for MySQL role (A single EBS volume is used as datadir on master and to deliver latest data to slaves (via snapshots).) 
+* Elastic IPs re-assigning to a same instance within a role 
+* Cloudfront support 
+* New Scripting events: beforeHostTerminate, beforeInstanceLaunch 
+* New variables for scripting engine: "instance_index", "region", "avail_zone" 
+* Ability to remove image and de-register AMI during role deletion. 
+* Various bugfixes and improvements. 
+
+
+
+1.0 RC4 [March 4 2009]
+* EBS Arrays (Create a storage device (up to 10 TB for now), attach it to an instance. Enter the desired size and Scalr will do the rest - create volumes, join them into a single device, create filesystem and mount it on your instance) 
+* Scripts execution order (If you have multiple scripts assigned on a single event, you can select an order in which they will be executed) 
+* Automatic EBS snapshots (Set how frequently Scalr will make snapshots of your volumes. Auto-EBS, manual EBS, EBS arrays - all support this feature) 
+* Support for Europe locations (Select what region your farm will run in) 
+* EBS volumes re-attaching to a same instance within a role (If you enable EBS inside a role settings, Volume #1 always gets attached to an instance that is launched 1st, Volume 2 to a second one and so on. Association persists between farm restarts) 
+* Attach and mount EBS volume to a particular instance (Set the size and push the button. Volumes always get attached and mounted whenever instance boots up) 
+* Support for SRV DNS records 
+* Ability to view/edit/delete all security groups (Including those created outside Scalr) 
+* Ability to switch an application between roles and farms 
+* New timeout in role settings: "Terminate instance if cannot retrieve it's status in X minutes" 
+* Various bugfixes and improvements in Scalr algorithms.
+
+
+
+1.0 RC3 [December 10 2008]
+* All users can contribute their custom roles and scripts, discuss shared and contributed roles and scripts. 
+* XML/XPATH-based /query-env interface replaces text-based getopts interface. This is about the way instances request data from Scalr. 
+* Ability to add user:group permissions in security groups. 
+* Stats graphics now being generated on demand and loaded with AJAX. 
+* Updated memcached role (easier external IPs configuration). 
+* Scripting engine: Allows you to create scripts with parameters and execute them on various events. 
+* Virtual hosts: Scalr now cares about Apache virtual hosts creation for you (only LAMP role for now). 
+* Automatic EBS: Allows you to automatically attach and mount EBS volumes. 
+* Role options (http://code.google.com/p/scalr/wiki/RoleOptions) 
+* New MySQL status page 
+* Scalr now respects non-Scalr Elastic IPs 
+* Custom role extend security groups from parent role or root role 
+* Added ext-mysql-slave, int-mysql-slave records 
+* Added ability to terminate & reboot instance from farm map 
+* Added "Place in different zones" option for role 
+* Refactored & improved queue system.
+
+Fixed bugs: 
+- MySQL error on garbage removal tool. 
+- Empty error on aws_settings  page when invalid cert or private key uploaded 
+- Queued/Added cyclic retry to EBS volume detach command. 
+- Old %role_name%-slave DNS records are not removed upon newMySQLMasterUp event. 
+- Opensource version can now be installed on EC2 instance (bad idea anyway).
+- Fixed double int-master DNS records 
+
+
+
+1.0 RC2 [October 15 2008]
+* Built-in SSH console
+* New farm edit widget
+* Security groups editor
+* Elastic IPs support. Automatic for the entire role and manual.
+* EBS support (manual. Automatic coming soon)
+* Role and farm-wise graphical statistics for CPU, Memory, LA and network usage.
+* Security groups editor.
+* New iconic farm map widget
+* New lvm-mysql role with decreased initialization time and support for databases up to 800GB (on x-large).
+* AWS keys no longer stored in filesystem and are encrypted. Encryption all around.
+* Ability to execute shell scripts, stored on Scalr ("hooks") on instances on hostInit event 
+* AXFR and proxy nameservers - you can backup Scalr nameservers with your own
+* New shared roles manager.
+* Faster log viewer.
+* Events and notifications system with AJAX timeline and configurable RSS, email and REST observers.
+* Event browser
+* Grouping by transaction in log view
+* More verbose logging 
+* HTTPS support
+* Support for TXT DNS records  and SPF constructor wiget
+* Miniumum ~1 hour uptime for an instance
+* Added statistics for farm: bandwidth usage and instances usage
+* New view of Farm add/edit page (tabs)
+* MySQL replication status
+* Garbage cleaner tool (removes unused keypairs and S3 buckets)
+* Process list viewer
+* Instances limit per client (Can be adjusted in Settings -> System settings)
+* Abort synchronization
+* New shared roles manager.
+* A lot of inline help and tips
+* New memcached role
+* New app-tomcat role (Tomcat 5.5)
+* New app-rails role for ROR projects
+
+* Fixed bugs:
+- Exception template (Remove selected: menu from table footer)
+- If we terminate farm before instance up, instance info doesn't removed from database. (Zomby instance info records)
+- Adding new application to exist running farm can end up with incorrect "'@' IN A" DNS records
+- DNSMaintenance routine do not update DNZ zone if zomby "@ IN A" records exist.
+- "Synchronize to all" link did not hide for rebooting instances.
+- Application wizard can create wrong A record if you do not choose the first opion on roles select
+- Inactive instances added in DNS zone
+- Missing ext-* and int-* records if you create application not through wizard
+- Incorrect applications count on farm roles page.
+- rndc not reloaded after updating allowed host for zones.
+- SOA serial not updated in some circumstances
+- Default records ignored if we add application using Applications -> Add new
+- Change admin password cause problems with clients AWS credentials decryption.
+- Cannot sync role on instance running on old AMI after Switch to new AMI procedure for shared roles.
+- If you terminate a farm while mysql backup is running, backup will not be initiated anymore
+- Missing int, ext-mysql-master DNS records after slave becomes master
+- Switch shared role to new AMI disables backups
+- Abort link freezing on custom roles view, if instance terminated when rebundle complete
+- Instances limit check for new farm
+- Incorrect count of pending instances on farm roles page.
+- Too small default values  for expire and refresh in for SOA DNS record.
+- Over 20 more
+
+
+
+1.0 RC0 [July 04 2008]
+* Added 64 bit platform support. New roles (and corresponding shared AMIs) available: app64, www64, mysql64, base64
+* Added support for new instance types, including high-CPU. You can now select instance
+types per role (note that some instance type support 64-bit platform only)
+* Added support for availability zones. You can now select a datacenter to launch your instances in, per role. Your mysql slave wont appear in europe (while master is in US) anymore.
+* Added MySQL transactions in important places, so database is not corrupted/out-of-sync if AWS request fails.
+* Improved super-search
+* Configurable logging based on log4php (see etc/log4php.xml) 
+* Admin can now swap the AMI ID for the existing shared role (Switch to AMI)
+* DNS zones now include int-ROLE_NAME.domain and ext-ROLE_NAME.domain A records that hold internal and external IP adresses of instances, respectively (http://scalr.net/faq.php)
+* Delay for dead-born instance termination can now be set per client.Which overrides a global setting (http://groups.google.com/group/scalr-discuss/t/2c5255dddf1ceb04) 
+* Removed synchronize to all link from non-running instances 
+* Added smart account consistency test to validate your AWS credentials.
+* Significantly improved DNS zone syntax validation 
+* Added support for defaults DNS records (plus added default "www in CNAME")
+* Improved transaction viewer
+* Added javascript slider for MinLA/MaxLA selection on "Farm add/edit". Less space for errors when diference between MinLA and MaxLA is moderately or critically low.
+* Added the ability to view reason of synchronization failure.
+* Added the ability to set 'Choose randomly' for avail zones per role. Useful for mysql to keep master and slaves in different datacenters. For those who care about data safety more than performance.
+* Mysql backup periods can be set in minutes
+* Sync/Rebundle proccess now post incremental log messages to Scalr.
+* To assure DNS zones integrity and avoid overwites, DNS zones now not beng saved immediaely, but added in queue.
+
+* Fixed bugs:
+- Scaling algorithm is broken
+- retrieved LA can be incorrectly parsed in some cases
+- users are able to see other's custom roles
+- zombie custom roles that are always "Being synchronized..."
+- MySQL maintenance glitches. 
+- No MySQL backup options displaying for custom roles derived from mysql role 
+- Failed custom roles appearing in lists
+- "Synchronize to all" now not available if SNMPd is not running on the instance
+- minLA and MaxLA can't be lower than 1.00
+- Bug in custom role removal routine 
+- Muliple bugs in synchronization
+- Quicksearch counts clients incorrectly
+- Security group not created for custom role in "Custom roles -> Add new"
+- If a client has only one running instance, "Roles->Add new" not working properly.
+- Improved rendering in Safari.
+- Not possible to downloa private key under IE7+HTTPS
+- Roles->Add new allows you to add existing role name
+- DNS records validation wont allow you to enter numeric-only lefts

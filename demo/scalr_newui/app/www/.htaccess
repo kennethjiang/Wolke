@@ -1,0 +1,30 @@
+RewriteEngine On
+
+# htaccess forbidden
+RewriteRule .htaccess - [F]
+
+RewriteRule ^storage/keys/([0-9]+)/(.*)\.pem$ /#/farms/view?id=$1&task=download_private_key [NE,L]
+
+#Timeline events XML
+RewriteRule ^storage/events/([0-9]+)/timeline\.xml$ timeline.xml.php?farmid=$1 [NE,L]
+
+#Farm events RSS
+RewriteRule ^storage/events/([0-9]+)/rss\.xml$ rss.xml.php?farmid=$1 [NE,L]
+
+#Environment
+RewriteRule ^query-env/([0-9-]+)/(.*)$ environment.php?version=$1&operation=$2&%{QUERY_STRING} [NE,L]
+
+#API service
+
+# subdomain rewrite rules start
+#RewriteCond %{HTTP_HOST} ^api\.dev\.x\.com$ [NC]
+#RewriteRule ^$ /api/api.php [NE, L] 
+
+# New UI Controler
+RewriteRule ^$ /ui.php [NE,L]
+
+RewriteRule ^js/(.*)-[0-9]+\.js js/$1.js [NE,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /ui.php [L]

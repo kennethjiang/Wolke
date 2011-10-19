@@ -1,0 +1,91 @@
+	.pop_nw, .pop_ne, .pop_sw, .pop_se, .pop_n, .pop_s, .pop_w, .pop_e, .pop_w25, .pop_h25	{
+		font-size: 1px;
+		overflow: hidden;
+		height: 25px;
+		width: 25px;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.pop_nw, .pop_ne, .pop_sw, .pop_se	{
+		background: url(/images/bubble/bubble_combined.png) no-repeat center center;
+	}
+	
+	.pop_content_container
+	{
+		overflow-y:auto;
+		overflow-x:hidden;
+	}
+	
+	.pop_nw	{ background-position: 0px 0px; }
+	.pop_ne	{ background-position: -25px 0px; }
+	.pop_sw	{ background-position: 0px -25px; }
+	.pop_se	{ background-position: -25px -25px; }
+	
+	.pop_n	{ background: url(/images/popup/n.gif) repeat-x top; width: auto; }
+	.pop_s	{ background: url(/images/popup/s.gif) repeat-x bottom; width: auto; }
+	.pop_w	{ background: url(/images/popup/w.gif) repeat-y left; }
+	.pop_e	{ background: url(/images/popup/e.gif) repeat-y right; }
+	
+	.pop_left	{ float: left; }
+	.pop_right	{ float: right; }
+	.pop_h25	{ width: auto; }
+	.pop_w25	{ height: auto; }
+	
+	.pop_clear	{
+		overflow: hidden;
+		height: 0%;
+		font-size: 1px;
+		clear: both;
+		visibility: hidden;
+		line-height: 0;
+	}
+	
+	.pop_sizex	{ background-color: #fff; width: 400px; }
+	.pop_sizey	{ background-color: #fff; height: 200px; }
+	.pop_popup	{ position: absolute; z-index: 10; }
+	.pop_tap	{ 
+		position: absolute; 
+		z-index: 11; 
+		width: 100px; 
+		height: 100px; 
+		background: url(/images/popup/tap.gif) no-repeat center center; 
+		margin-left: 100px;
+	}
+	
+	.pop_bat	{ 
+		position: absolute; 
+		z-index: 11; 
+		width: 100px; 
+		height: 100px; 
+		background: url(/images/popup/bat.gif) no-repeat center center; 
+		margin-left: 100px;
+	}
+	
+	.pop_header, .pop_content	{ 
+		position: absolute; 
+		z-index: 11; 
+		text-align: right; 
+		height: 13px; 
+		font-size: 1px; 
+		margin-top: 13px;
+		margin-left: 42px;
+	}
+	
+	.pop_content	{
+		font-size: 1em;
+		float: none;
+		height: auto;
+		margin-left: 10px;
+		margin-top: 12px;
+		text-align: left;
+	}
+	
+	.pop_content div {
+		overflow: auto;
+		overflow-x: hidden;
+	}
+	
+	.pop_header img	{ cursor: pointer; }
+	
+

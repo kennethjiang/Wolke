@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeleteQueueResponse xmlns="http://queue.amazonaws.com/doc/2008-01-01/">
+  <ResponseMetadata>
+    <RequestId>string</RequestId>
+  </ResponseMetadata>
+</DeleteQueueResponse>

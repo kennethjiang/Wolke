@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)_closed\.gif /images/dhtmlxtree/csh_vista/folderClosed.gif [NE,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)_open\.gif /images/dhtmlxtree/csh_vista/folderOpen.gif [NE,L]

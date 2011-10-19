@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SendMessageResponse xmlns="http://queue.amazonaws.com/doc/2008-01-01/">
+  <SendMessageResult>
+    <MessageId>string</MessageId>
+    <MD5OfMessageBody>string</MD5OfMessageBody>
+  </SendMessageResult>
+  <ResponseMetadata>
+    <RequestId>string</RequestId>
+  </ResponseMetadata>
+</SendMessageResponse>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetQueueAttributesResponse xmlns="http://queue.amazonaws.com/doc/2008-01-01/">
+  <GetQueueAttributesResult>
+    <!--1 or more repetitions:-->
+    <Attribute>
+      <Name>string</Name>
+      <Value>string</Value>
+    </Attribute>
+  </GetQueueAttributesResult>
+  <ResponseMetadata>
+    <RequestId>string</RequestId>
+  </ResponseMetadata>
+</GetQueueAttributesResponse>

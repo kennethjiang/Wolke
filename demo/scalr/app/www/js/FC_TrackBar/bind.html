@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=windows-1251" />
+	<title>FC-TrackBar</title>
+	<style type="text/css">
+		body, html, h1 {padding:0; margin:0; font:12px arial;}
+		body {padding:10px 15px;}
+		h1 {font:bold 20px Arial; color:#A1A1A1; margin:30px 0 10px 0;}
+		input {border:1px solid #666; font:12px arial; width:50px;}
+		div {padding-bottom:15px; font:11px tahoma;}
+	</style>
+	<link rel="stylesheet" type="text/css" href="trackbar.css" />
+	<script type="text/javascript" src="jquery-1.2.3.min.js"></script>
+	<script type="text/javascript" src="jquery.trackbar.js"></script>
+	<script type="text/javascript">
+	//<![CDATA[
+	$(document).ready(function(){
+		// Demo 1
+		$('#oneId').trackbar(
+			{
+				onMove : function() {
+					$.trackbar.getObject('twoId').updateLeftValue(this.leftValue);
+				},
+				dual : false, // two intervals
+				width : 300, // px
+			//	leftLimit : 0, // unit of value
+				leftValue : 0, // unit of value
+				rightLimit : 255, // unit of value
+				rightValue : 0, // unit of value
+				hehe : ":-)"
+			},
+			"oneId"
+		);
+		$('#twoId').trackbar(
+			{
+				onMove : function() {
+					$.trackbar.getObject('oneId').updateLeftValue(this.leftValue);
+				},
+				dual : false, // two intervals
+				width : 300, // px
+			//	leftLimit : 0, // unit of value
+				leftValue : 0, // unit of value
+				rightLimit : 255, // unit of value
+				rightValue : 0, // unit of value
+				hehe : ":-)"
+			},
+			"twoId"
+		);
+
+		// Demo 2
+		$('#threeId').trackbar(
+			{
+				onMove : function() {
+					$.trackbar.getObject('fourId').updateLeftValue(this.leftValue);
+				},
+				width : 300, // px
+			//	leftLimit : 0, // unit of value
+				leftValue : 50, // unit of value
+				rightLimit : 255, // unit of value
+				rightValue : 200, // unit of value
+				hehe : ":-)"
+			},
+			"threeId"
+		);
+		$('#fourId').trackbar(
+			{
+				onMove : function() {
+					$.trackbar.getObject('threeId').updateLeftValue(this.leftValue);
+				},
+				width : 300, // px
+			//	leftLimit : 0, // unit of value
+				leftValue : 30, // unit of value
+				rightLimit : 255, // unit of value
+				rightValue : 200, // unit of value
+				hehe : ":-)"
+			},
+			"fourId"
+		);
+		
+		// Demo 3
+		$('#fiveId').trackbar(
+			{
+				onMove : function() {
+					$.trackbar.getObject('sixId').updateLeftValue(this.leftValue);
+					$.trackbar.getObject('sixId').updateRightValue(this.rightValue)
+				},
+				width : 300, // px
+			//	leftLimit : 0, // unit of value
+				leftValue : 50, // unit of value
+				rightLimit : 255, // unit of value
+				rightValue : 200, // unit of value
+				hehe : ":-)"
+			},
+			"fiveId"
+		);
+		$('#sixId').trackbar(
+			{
+				onMove : function() {
+					$.trackbar.getObject('fiveId').updateLeftValue(this.leftValue);
+					$.trackbar.getObject('fiveId').updateRightValue(this.rightValue)
+				},
+				width : 300, // px
+			//	leftLimit : 0, // unit of value
+				leftValue : 30, // unit of value
+				rightLimit : 255, // unit of value
+				rightValue : 200, // unit of value
+				hehe : ":-)"
+			},
+			"sixId"
+		);
+	});
+	// -->
+	</script>
+</head>
+<body>
+
+<h1>Simple bind</h1>
+<br/>
+<div id="oneId"></div>
+<div id="twoId"></div>
+
+<h1>Left-side bind</h1>
+<br/>
+<div id="threeId"></div>
+<div id="fourId"></div>
+
+<h1>Identical</h1>
+<br/>
+<div id="fiveId"></div>
+<div id="sixId"></div>
+
+</body>
+</html>

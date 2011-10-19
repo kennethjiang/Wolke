@@ -1,0 +1,233 @@
+<?php
+
+class Scalr_UI_Controller_Farms extends Scalr_UI_Controller
+{
+	const CALL_PARAM_NAME = 'farmId';
+
+	public function defaultAction()
+	{
+		$this->viewAction();
+	}
+
+	public function getList()
+	{
+		$retval = array();
+		$s = $this->db->execute("SELECT id, name FROM farms WHERE env_id = ?", array($this->session->getEnvironmentId()));
+		while ($farm = $s->fetchRow()) {
+			$retval[$farm['id']] = $farm;
+		}
+
+		return $retval;
+	}
+
+	public function viewAction()
+	{
+		$this->response->setJsonResponse(array(
+			'success' => true,
+			'module' => $this->response->template->fetchJs('farms/view.js')
+		));
+	}
+
+	public function editAction()
+	{
+		$this->buildAction();
+	}
+
+	public function buildAction()
+	{
+		$this->request->defineParams(array(
+			'farmId' => array('type' => 'int'),
+			'roleId' => array('type' => 'int')
+		));
+
+		$farmId = $this->getParam('farmId');
+		$roleId = $this->getParam('roleId');
+
+		$moduleParams = array(
+			'farmId' => $farmId,
+			'roleId' => $roleId,
+			'currentTimeZone' => @date_default_timezone_get(),
+			'currentTime' => date("D h:i a"),
+			'currentEnvId' => $this->session->getEnvironmentId(),
+			'groups' => ROLE_GROUPS::GetName(null, true)
+		);
+
+		$platforms = Scalr_UI_Controller_Platforms::getEnabledPlatforms();
+		$locationsList = array();
+
+		foreach ($platforms as $platform => $name) {
+			$locationsList[$platform] = PlatformFactory::NewPlatform($platform)->getLocations();
+		}
+
+		if (empty($platforms))
+			throw new Exception('在新建云平台之前，请设置环境并提供相应的云证书');
+
+		$moduleParams['platforms'] = $platforms;
+		$moduleParams['locations'] = $locationsList;
+
+		$this->response->setJsonResponse(array(
+			'success' => true,
+			'moduleName' => $this->getModuleName('ui/farms/builder.js'),
+			'moduleParams' => $moduleParams,
+			'moduleRequires' => array(
+				$this->getModuleName('ui-ng/viewers/SelRolesViewer.js', true),
+				$this->getModuleName('ui-ng/viewers/AllRolesViewer.js', true),
+				//$this->getModuleName('highlight/highlight.pack.js') // TODO: enable when it's ready
+
+				$this->getModuleName('ui/farms/builder/tab.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/balancing.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/cloudwatch.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/dns.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/ebs.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/eips.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/euca.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/mysql.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/nimbula.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/params.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/placement.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/rsplacement.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/rds.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/scaling.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/scripting.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/servicesconfig.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/timeouts.js', true),
+				$this->getModuleName('ui/farms/builder/tabs/vpc.js', true)
+			)
+		));
+	}
+
+	public function xLaunchAction()
+	{
+		$this->request->defineParams(array(
+			'farmId' => array('type' => 'int')
+		));
+		
+		$dbFarm = DBFarm::LoadByID($this->getParam('farmId'));
+		$this->session->getAuthToken()->hasAccessEnvironmentEx($dbFarm->EnvID);
+		
+		Scalr::FireEvent($dbFarm->ID, new FarmLaunchedEvent(true));
+        
+		$this->response->setJsonResponse(array('success' => true));
+		
+        //$okmsg = sprintf(_("云平台  %s 已启动。所有服务器启动将需要几分钟，请耐心等待。"), $farminfo['name']);
+	}
+	
+	public function xRemoveAction()
+	{
+		$this->request->defineParams(array(
+			'farmId' => array('type' => 'int')
+		));
+		
+		$dbFarm = DBFarm::LoadByID($this->getParam('farmId'));
+		$this->session->getAuthToken()->hasAccessEnvironmentEx($dbFarm->EnvID);
+		
+		if ($dbFarm->Status != FARM_STATUS::TERMINATED)
+	    	throw new Exception(_("不能删除一个运行状态的云平台。请先终止该云平台，再进行删除。"));
+	
+	    $servers = $this->db->GetOne("SELECT COUNT(*) FROM servers WHERE farm_id=? AND status!=?", array($dbFarm->ID, SERVER_STATUS::TERMINATED));
+	    if ($servers != 0)
+		    throw new Exception(sprintf(_("不能删除一个运行状态的云平台。 %s 的服务器仍在运行。"), $servers));
+		    
+		$this->db->BeginTrans();
+    		
+    	try
+    	{
+	    	$this->db->Execute("DELETE FROM farms WHERE id=?", array($dbFarm->ID));
+	    	$this->db->Execute("DELETE FROM farm_role_settings WHERE farm_roleid IN (SELECT id FROM farm_roles WHERE farmid=?)", array($dbFarm->ID));
+    		$this->db->Execute("DELETE FROM farm_roles WHERE farmid=?", array($dbFarm->ID));
+    		$this->db->Execute("DELETE FROM logentries WHERE farmid=?", array($dbFarm->ID));
+    		$this->db->Execute("DELETE FROM elastic_ips WHERE farmid=?", array($dbFarm->ID));
+    		$this->db->Execute("DELETE FROM events WHERE farmid=?", array($dbFarm->ID));
+    		$this->db->Execute("DELETE FROM ec2_ebs WHERE farm_id=?", array($dbFarm->ID));
+    		$this->db->Execute("DELETE FROM apache_vhosts WHERE farm_id=?", array($dbFarm->ID));
+    		
+    		$this->db->Execute("DELETE FROM farm_role_options WHERE farmid=?", array($dbFarm->ID));
+    		$this->db->Execute("DELETE FROM farm_role_scripts WHERE farmid=?", array($dbFarm->ID));
+    		$this->db->Execute("DELETE FROM ssh_keys WHERE farm_id=?", array($dbFarm->ID));
+	    		
+    		//TODO: Remove servers
+    		$this->db->Execute("DELETE FROM servers WHERE farm_id=?", array($dbFarm->ID));
+    		
+    		// Clean observers
+    		$observers = $this->db->Execute("SELECT * FROM farm_event_observers WHERE farmid=?", array($dbFarm->ID));
+    		while ($observer = $observers->FetchRow())
+    		{
+    			$this->db->Execute("DELETE FROM farm_event_observers WHERE id=?", array($observer['id']));
+    			$this->db->Execute("DELETE FROM farm_event_observers_config WHERE observerid=?", array($observer['id']));
+    		}
+    		
+    		$this->db->Execute("UPDATE dns_zones SET farm_id='0', farm_roleid='0' WHERE farm_id=?", array($dbFarm->ID));
+    	}
+    	catch(Exception $e)
+    	{
+    		$this->db->RollbackTrans();
+    		throw new Exception(_("目前 ({$e->getMessage()})不能删除该云平台。请稍后再试。"));
+    	}
+    		
+	    $this->db->CommitTrans();
+	    
+	    $this->response->setJsonResponse(array('success' => true));
+	}
+	
+	public function xListViewFarmsAction()
+	{
+		$this->request->defineParams(array(
+			'clientId' => array('type' => 'int'),
+			'farmId' => array('type' => 'int'),
+			'sort' => array('type' => 'string', 'default' => 'id'),
+			'dir' => array('type' => 'string', 'default' => 'ASC')
+		));
+		
+		$sql = "SELECT clientid, id, name, status, dtadded FROM farms WHERE 1=1";
+
+		if (!$this->session->getAuthToken()->hasAccess(Scalr_AuthToken::SCALR_ADMIN))
+			$sql .= " AND env_id='".$this->session->getEnvironmentId()."'";
+
+		if ($this->getParam('farmId'))
+			$sql .= " AND id=".$this->db->qstr($this->getParam('farmId'));
+
+		if ($this->getParam('clientId'))
+			$sql .= " AND clientid=".$this->db->qstr($this->getParam('clientId'));
+
+		if ($this->getParam('status') != '')
+			$sql .= " AND status=".$this->db->qstr($this->getParam('status'));;
+
+		$response = $this->buildResponseFromSql($sql, array("name", "id", "comments"));
+
+		$english = array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+        $chinese = array("一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月");
+
+		foreach ($response["data"] as &$row) {
+			$row["servers"] = $this->db->GetOne("SELECT COUNT(*) FROM servers WHERE farm_id='{$row['id']}'");
+			$row["roles"] = $this->db->GetOne("SELECT COUNT(*) FROM farm_roles WHERE farmid='{$row['id']}'");
+			$row["zones"] = $this->db->GetOne("SELECT COUNT(*) FROM dns_zones WHERE farm_id='{$row['id']}'");
+			
+			$dtdate =  date("Y年m月d日", strtotime($row["dtadded"]));
+			for ($i = 0; $i < 12; $i++) {
+				$dtdate = str_replace($english[$i], $chinese[$i], $dtdate);
+			}
+			
+			$row['dtadded'] = $dtdate;
+			
+			if ($this->session->getAuthToken()->hasAccess(Scalr_AuthToken::SCALR_ADMIN))
+				$row['client_email'] = $this->db->GetOne("SELECT email FROM clients WHERE id='{$row['clientid']}'");
+
+			$row["havemysqlrole"] = (bool)$this->db->GetOne("SELECT id FROM farm_roles WHERE role_id IN (SELECT role_id FROM role_behaviors WHERE behavior=?) AND farmid=? AND platform != ?",
+				array(ROLE_BEHAVIORS::MYSQL, $row['id'], SERVER_PLATFORMS::RDS)
+			);
+
+			$row['status_txt'] = FARM_STATUS::GetStatusName($row['status']);
+
+			if ($row['status'] == FARM_STATUS::RUNNING)
+			{
+				$row['shortcuts'] = $this->db->GetAll("SELECT * FROM farm_role_scripts WHERE farmid=? AND (farm_roleid IS NULL OR farm_roleid='0') AND ismenuitem='1'",
+					array($row['id'])
+				);
+				foreach ($row['shortcuts'] as &$shortcut)
+					$shortcut['name'] = $this->db->GetOne("SELECT name FROM scripts WHERE id=?", array($shortcut['scriptid']));
+			}
+		}
+
+		$this->response->setJsonResponse($response);
+	}
+}
