@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<title>Wolke Demo</title>
+	<title>云拓智能化平台运维系统</title>
 	<meta http-equiv="Content-Language" content="en-us" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="robots" content="none" />
@@ -122,7 +122,7 @@ function change3()
 
       </div>
       
-		  <div id="loginout" class="loginout"><a href="/#/core/logout"><img src="/html/images/tuichu.png" alt="Wolke Demo" /></a></div>
+		  <div id="loginout" class="loginout"><a href="/#/core/logout"><img src="/html/images/tuichu.png" alt="云拓智能化平台运维系统" /></a></div>
 
 
 
