@@ -50,3 +50,12 @@
 	color: #FF0000;
 	text-decoration: none;
 }
+
+
+h1 {color:#c42033;font: 16px Verdana; font-weight:bold; margin-bottom:15px }
+h2 {font-size:14px;margin-bottom:0px;}
+h2 a {text-decoration:none !important;color:#cc0000;}
+h3 {color:#2a2a2a;font: 12px Verdana;margin-bottom:15px}
+h4 {font-size: 0.8em;}
+p {color:#333333; font: 13px Verdana}
+
