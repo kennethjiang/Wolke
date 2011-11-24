@@ -1,0 +1,51 @@
+/* Basics */
+
+*{margin:0; padding:0;}
+
+body {
+	background:#e7e7e7 url(images/bg.jpg);
+	font-family:verdana, arial, sans-serif;
+	font-size:10px;
+	font-color:333333;
+	margin:0 0 20px 0;
+}
+
+h1 {color:#c42033;font: 16px Verdana; font-weight:bold; margin-bottom:15px }
+h2 {font-size:14px;margin-bottom:0px;}
+h2 a {text-decoration:none !important;color:#cc0000;}
+h3 {color:#2a2a2a;font: 12px Verdana;margin-bottom:15px}
+h4 {font-size: 0.8em;}
+p {color:#333333; font: 13px Verdana}
+
+.leftborder {background-image: url(images/border.png); background-repeat: repeat-y; } 
+.rightborder {background-image: url(images/border.png); background-repeat: repeat-y; background-position:right} 
+.navbar { background-color:#000; background-image: url(images/back-nav-bar.png); background-repeat: repeat-x;} 
+.bottomborder { background-color:#000; background-image: url(images/bottom-border.png); background-repeat: repeat-x;} 
+
+/* Images and Misc */
+img {border:none;}
+img a {border:none;}
+.padded {padding:0 0 0 20px;}
+hr {border-bottom:0 !important;background:#ccc;}
+
+
+/* Links */
+a {color:#f00006;text-decoration:none;border:none;}
+a:hover{color:#6A7CA0;text-decoration: underline; border: none;}
+
+
+/* Content */
+#content {float:left;display:inline;width:955px;overflow:hidden;padding:20px 0 20px 0px;}	
+.content_table {padding:0 0 0 0px; font:normal 16px verdana, helvetica, arial, serif;}
+.content_table td {;padding:15px 0 0 20px;}
+
+.alignleft {float:left;margin:0 20px 5px 0;}
+.alignright {float:right; margin:25px;}
+.notfound{padding: 25px; font-size: 14pt; }
+
+
+/* Footer */
+#footer {background:#fff;clear:both;width:925px;padding:25px 15px;margin-top:15px;border-top:solid 1px #DEDEDE;font-size:7pt;}
+#footer p{margin:0;font:12px verdana;}
+#footer a{color:#ff0006;text-decoration:none;}
+#footer a:hover{color:#ff0006;text-decoration:underline;}
