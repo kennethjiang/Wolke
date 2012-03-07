@@ -1,0 +1,19 @@
+
+# List flavors
+curl -H "X-Auth-Token:999888777666" http://localhost:8774/v1.1/1/flavors
+
+# List flavor 1
+curl -H "X-Auth-Token:999888777666" http://localhost:8774/v1.1/1/flavors/1
+
+# List of images
+curl -H "X-Auth-Token:999888777666" http://localhost:8774/v1.1/1/images
+
+# Detail of image 3
+curl -H "X-Auth-Token:999888777666" http://localhost:8774/v1.1/1/images/3
+
+# List Servers (instances)
+curl -H "X-Auth-Token:999888777666" http://localhost:8774/v1.1/1/servers
+
+# List detail of server 1
+curl -H "X-Auth-Token:999888777666" http://localhost:8774/v1.1/1/servers/1
+

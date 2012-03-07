@@ -1,0 +1,25 @@
+
+# Retrieves token and service catalog for "myuser"
+curl -d '{"passwordCredentials":{"username": "myuser", "password": "mypassword"}}' -H "Content-type: application/json" http://localhost:5000/v2.0/tokens
+curl -d '{"passwordCredentials":{"username": "myuser", "password": "mypassword"}}' -H "Content-type: application/json" http://localhost:5000/v2.0/tokens | python -m json.tool
+
+# Get a list of tenants (admin port)
+curl -H "X-Auth-Token:999888777666" http://localhost:35357/v2.0/tenants | python -m json.tool
+
+# Get a list of users (admin port)
+curl -H "X-Auth-Token:999888777666" http://localhost:35357/v2.0/users
+
+# Get information about a token
+curl -H "X-Auth-Token:999888777666" http://localhost:35357/v2.0/tokens/999888777666
+
+# Revoke a token (???)
+$ curl -X DELETE -H "X-Auth-Token:999888777666" http://localhost:35357/tokens/0eed0ced-4667-4221-a0b2-24c91f242b0b
+
+# Create a tenant (???)
+curl -H "X-Auth-Token:999888777666" -H "Content-type: application/json" -d '{"tenant":{"id": 416, "name":"MyTenant2", "description":"My 2nd Tenant", "enabled":true}}'  http://localhost:5000/tenants
+
+# Update a tenant (???)
+curl -X PUT -H "X-Auth-Token:999888777666" -H "Content-type: application/json" -d '{"tenant":{"description":"My NEW 2nd Tenant"}}' http://localhost:5001/v2.0/tenants/MyTenant2
+
+#Delete a tenant
+curl -X DELETE -H "X-Auth-Token:999888777666" http://localhost:5001/v2.0/tenants/MyTenant2

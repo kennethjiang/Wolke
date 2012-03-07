@@ -1,0 +1,18 @@
+Nova Zone Aware Scheduling
+
+
+nova zone                Show or edit a child zone. No zone arg for this zone.
+nova zone-add            Add a new child zone.
+nova zone-boot           Boot a new server, potentially across Zones.
+nova zone-delete         Delete a zone.
+nova zone-info           Get this zones name and capabilities.
+nova zone-list           List the children of a zone.
+
+--allow_admin_api=true
+--enable_zone_routing=true
+--zone_name=zone1
+--build_plan_encryption_key=c286696d887c9aa0611bbb3e2025a45b
+--scheduler_driver=nova.scheduler.base_scheduler.BaseScheduler
+--default_host_filter=nova.scheduler.filters.AllHostsFilter
+
+nova zone-add http://192.168.2.12:8774/v1.1/ myuser e979fd6a-2980-4b3a-96c4-a258e222a91e 0.0 1.0

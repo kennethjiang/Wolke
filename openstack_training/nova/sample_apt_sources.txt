@@ -1,0 +1,5 @@
+deb http://mirror.rackspace.com/ubuntu maverick main restricted
+deb http://mirror.rackspace.com/ubuntu maverick-updates main restricted
+deb http://mirror.rackspace.com/ubuntu maverick universe
+#deb http://dev-packages.rcb.me maverick main
+deb http://ops.rcb.me/packages/ maverick diablo-d5

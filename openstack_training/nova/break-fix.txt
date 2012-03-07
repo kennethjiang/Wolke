@@ -1,0 +1,11 @@
+Stop compute service
+Stop compute and network service
+Bring the bridge down and then delete
+Delete the nova sqlite db
+Delete the keystone sqlite db
+
+remove network from nova-manage and stop nova-network service
+	sudo nova-manage network modify --network=10.0.0.0/24 --disassociate-project
+	sudo nova-manage network delete --network=10.0.0.0/24
+	sudo service nova-network stop
+

@@ -1,0 +1,39 @@
+# Multi-Tenant
+
+select id,cidr,vlan,bridge,gateway,dhcp_start from networks;
+UPDATE networks SET vlan = 101, bridge = 'br101' WHERE id = 2;
+
+brctl addbr br100
+ifconfig br100 up
+brctl addbr br101
+ifconfig br101 up
+
+
+chown nova:nova /var/lib/nova/networks/*.*
+
+-------
+
+# Add a new Tenant
+sudo keystone-manage tenant add NewTenant
+sudo keystone-manage role grant Admin myuser NewTenant
+
+# Set Service Catalog for Tenant
+sudo keystone-manage endpoint add NewTenant 1
+sudo keystone-manage endpoint add NewTenant 2
+sudo keystone-manage endpoint add NewTenant 3
+sudo keystone-manage endpoint add NewTenant 4
+sudo keystone-manage endpoint add NewTenant 5
+
+# Add a Network for the new Tenant
+sudo stop nova-network
+sudo nova-manage network create --label=private --fixed_range_v4=10.0.2.0/24 --num_networks=1 --network_size=256 --vlan=102 --bridge=br102 --bridge_interface=eth0
+sudo nova-manage network modify --project=NewTenant --network=10.0.2.0/24
+
+# Create the bridge
+sudo brctl addbr br102
+sudo ifconfig br102 up
+
+# Start Nova Network
+sudo start nova-network
+
+

@@ -1,0 +1,10 @@
+Nova Volumes
+
+sudo apt-get install -y --force-yes lvm2 nova-volume
+
+sudo visudo
+# Cmnd alias specification
+nova ALL = (root) NOPASSWD: /bin/dd
+
+
+sudo fdisk /dev/sda
